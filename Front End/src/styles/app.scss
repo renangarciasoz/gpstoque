@@ -1,0 +1,82 @@
+.app {
+    width: 1440px;
+    height: 900px;
+    display: grid;
+    grid-template-columns: 106px 1334px;
+    grid-template-rows: 100px 900px;
+
+    .header-bar {
+        grid-column: 2 / 2;
+        grid-row: 1 / 1;
+        background-color: #fafbfc;
+        border-bottom: 1px solid #e7e9ea;
+    }
+
+    .menu-left {
+        grid-column: 1 / 1;
+        grid-row: 1 / span 2;
+        background-color: #fafbfc;
+        border-right: 1px solid #e7e9ea;
+        display: grid;
+        grid-template-rows: 100px 800px;
+
+        .logo-wrapper {
+            grid-row: 1 / 1;
+            align-self: center;
+
+            .logo {
+                width: 91px;
+                height: 28px;
+                background: url(../img/img_logo.png)center center no-repeat;
+                background-size: cover;
+            }
+        }
+
+        .menu-items {
+            grid-row: 2 / 2;
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .item {
+                width: 100%;
+                height: 44px;
+                display: flex;
+                text-decoration: none;
+
+                .rectangle {
+                    width: 0px;
+                    height: 100%;
+                    border-radius: 16px;
+                    background-color: #4192ec;
+                    box-shadow: 2px 3px 11px 0 rgba(1, 172, 253, 0.74);
+                    transition: 0.3s ease-in-out;
+                }
+
+                .item-label {
+                    width: 98px;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: row;
+                    padding: 10px;
+                    color: #4da1ff;
+                }
+
+                &:hover {
+
+                    .rectangle {
+                        width: 6px;
+                    }
+                }
+            }
+        }
+    }
+
+    .main-content {
+        grid-column: 2 / 2;
+        grid-row: 2 / 2;
+    }
+}
