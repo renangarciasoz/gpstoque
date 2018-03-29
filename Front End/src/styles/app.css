@@ -1,58 +1,58 @@
 .app {
-  width: 1440px;
-  height: 900px;
-  display: grid;
-  grid-template-columns: 106px 1334px;
-  grid-template-rows: 100px 900px; }
-  .app .header-bar {
-    grid-column: 2 / 2;
-    grid-row: 1 / 1;
-    background-color: #fafbfc;
-    border-bottom: 1px solid #e7e9ea; }
+  width: 100%;
+  display: flex;
+  flex-direction: row; }
   .app .menu-left {
-    grid-column: 1 / 1;
-    grid-row: 1 / span 2;
-    background-color: #fafbfc;
+    width: 140px;
+    min-width: 140px;
+    min-height: 100vh;
+    background-color: #f4f8f9;
     border-right: 1px solid #e7e9ea;
-    display: grid;
-    grid-template-rows: 100px 800px; }
-    .app .menu-left .logo-wrapper {
-      grid-row: 1 / 1;
-      align-self: center; }
-      .app .menu-left .logo-wrapper .logo {
-        width: 91px;
-        height: 28px;
-        background: url(../img/img_logo.png) center center no-repeat;
-        background-size: cover; }
+    display: flex;
+    flex-direction: column; }
+    .app .menu-left .logo {
+      width: 100%;
+      height: 140px;
+      background: url(../img/img_logo.png) center center no-repeat;
+      background-size: 80% auto; }
     .app .menu-left .menu-items {
-      grid-row: 2 / 2;
-      height: 50%;
+      height: 100%;
+      width: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: center; }
+      justify-content: flex-start; }
       .app .menu-left .menu-items .item {
         width: 100%;
-        height: 44px;
         display: flex;
+        justify-content: flex-start;
+        flex-direction: row;
+        padding-top: 80px;
         text-decoration: none; }
         .app .menu-left .menu-items .item .rectangle {
-          width: 0px;
-          height: 100%;
+          width: 0%;
+          will-change: width;
+          height: 40px;
           border-radius: 16px;
           background-color: #4192ec;
           box-shadow: 2px 3px 11px 0 rgba(1, 172, 253, 0.74);
-          transition: 0.3s ease-in-out; }
-        .app .menu-left .menu-items .item .item-label {
-          width: 98px;
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: row;
-          padding: 10px;
-          color: #4da1ff; }
+          transition: 0.2s ease-in; }
+        .app .menu-left .menu-items .item .label {
+          width: 100%;
+          color: #4da1ff;
+          font-size: 25px;
+          text-align: center; }
         .app .menu-left .menu-items .item:hover .rectangle {
-          width: 6px; }
-  .app .main-content {
-    grid-column: 2 / 2;
-    grid-row: 2 / 2; }
+          width: 3%; }
+        .app .menu-left .menu-items .item.active .rectangle {
+          width: 3%; }
+  .app .wrapper-right {
+    min-height: 100vh;
+    width: 100%; }
+    .app .wrapper-right .header {
+      width: 100%;
+      height: 120px;
+      min-height: 120px;
+      background-color: #f4f8f9;
+      border-bottom: 1px solid #e7e9ea; }
+    .app .wrapper-right .content {
+      background-color: #f4f8f9; }

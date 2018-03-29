@@ -1,41 +1,24 @@
 import React, { Component } from 'react';
 import './styles/app.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import SimpleLineIcon from 'react-simple-line-icons';
 
 class App extends Component {
   render() {
     return (
       <div className="app">
-        <div className="header-bar"></div>
         <div className="menu-left">
-          <div className="logo-wrapper">
-            <div className="logo"></div>
-          </div>
+          <div className="logo"></div>
           <div className="menu-items">
-            <a href="#" className="item">
+            <a href="" className="item">
               <div className="rectangle"></div>
-              <div className="item-label">
-               icone
-              </div>
-            </a>
-
-            <a href="#" className="item">
-              <div className="rectangle"></div>
-              <div className="item-label">
-               icone
-              </div>
-            </a>
-
-            <a href="#" className="item">
-              <div className="rectangle"></div>
-              <div className="item-label">
-               icone
-              </div>
+              <div className="label"><i class="fas fa-chart-line"></i></div>
             </a>
           </div>
         </div>
-        <div className="main-content"></div>
+        <div className="wrapper-right">
+          <div className="header"></div>
+          <div className="content"></div>
+        </div>
       </div>
     );
   }
