@@ -4,8 +4,8 @@
     flex-direction: row;
 
     .menu-left {
-        width: 140px;
-        min-width: 140px;
+        width: 110px;
+        min-width: 110px;
         min-height: 100vh;
         background-color: #f4f8f9;
         border-right: 1px solid #e7e9ea;
@@ -14,30 +14,33 @@
 
         .logo {
             width: 100%;
-            height: 140px;
+            height: 90px;
+            min-height: 90px;
             background: url(../img/img_logo.png) center center no-repeat;
             background-size: 80% auto;
         }
 
         .menu-items {
-           height: 100%;
            width: 100%;
+           height: 100%;
            display: flex;
            flex-direction: column;
            justify-content: flex-start;
+           margin-top: 70px;
            
            .item {
+                height: 45px;
                 width: 100%;
                 display: flex;
                 justify-content: flex-start;
                 flex-direction: row;
-                padding-top: 80px;
                 text-decoration: none;
+                margin-top: 15px;
                
                 .rectangle {
                     width: 0%;
                     will-change: width;
-                    height: 40px;
+                    height: 100%;
                     border-radius: 16px;
                     background-color: #4192ec;
                     box-shadow: 2px 3px 11px 0 rgba(1, 172, 253, 0.74);
@@ -47,8 +50,17 @@
                 .label {
                     width: 100%;
                     color: #4da1ff;
-                    font-size: 25px;
+                    font-size: 20px;
                     text-align: center;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    .item-name {
+                        font-size: 12px;
+                        margin: 0;
+                    }
                 }
 
                 &:hover {
@@ -60,6 +72,20 @@
                 }
            }
         }
+
+        .footer {
+            width: 100%;
+            height: 35px;
+            max-height: 35px;
+            background-color: #e7e9eae1;
+            font-size: 11px;
+            color: rgba(0,0,0,0.5);
+            padding: 10px 4px;
+            word-wrap: nowrap;
+            border-top-left-radius: 2px;
+            border-top-right-radius: 2px;
+            text-align: center;
+        }
     }
 
     .wrapper-right {
@@ -68,8 +94,8 @@
 
         .header {
             width: 100%;
-            height: 120px;
-            min-height: 120px;
+            height: 90px;
+            min-height: 90px;
             background-color: #f4f8f9;
             border-bottom: 1px solid #e7e9ea;
         }
