@@ -22,6 +22,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "react-router-dom": "^4.2.2",
     "react-simple-line-icons": "^1.0.8"
   }
 }
