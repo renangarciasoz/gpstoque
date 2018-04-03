@@ -2,7 +2,6 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { auth } from './App';
 
-
 function validate(email, password) {
     return {
         email: email.length === 0,
@@ -64,15 +63,9 @@ class Login extends React.Component {
         return !isDisabled;
     }
 
-    login() {
-        auth.authenticate(() => {
-            this.setState({ redirectToReferrer: true });
-        });
-    }
-
-    resetPassword(event) {
+    resetPassword(evt) {
         alert('Resetar senha em construção');
-        event.preventDefault();
+        evt.preventDefault();
     }
 
     render() {

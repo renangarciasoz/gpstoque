@@ -40,6 +40,7 @@
                 }
 
                 input {
+                    transition: 0.3s ease;
                     padding: 7px 20px;
                     border-radius: 4px;
                     background-color: #ffffff;
@@ -55,7 +56,8 @@
                     outline: none;
 
                     &.error {
-                        border: solid 1px #e97f88;
+                        border: solid 1px rgba(245, 47, 47, 0.4);
+                        animation: 0.2s bounce ease-in;
                     }
                 }                
             }
@@ -87,8 +89,23 @@
                     margin-top: 12px;
                     color: #4da1ff;
                     background-color: #ffffff;
+                    outline: none;
                 }
             }
         }
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateX(-5px)
+    }
+
+    50% {
+        transform: translateX(5px)
+    }
+
+    100% {
+        transform: translateX(0%)
     }
 }

@@ -72,6 +72,7 @@ const AuthButton = withRouter(
     ({ history }) =>
         auth.isAuthenticated ? (
             <button
+                style={{backgroundColor: 'transparent', color: '#4da1ff', marginLeft: '10px', border: 'none', outline: 'none', cursor: 'pointer'}}
                 onClick={() => {
                     auth.signout(() => history.push("/"));
                 }}
