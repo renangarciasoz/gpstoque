@@ -5,6 +5,7 @@
 
 // Components
 @import './components/MenuLeft.scss';
+@import './components/SubMenu.scss';
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
@@ -14,4 +15,39 @@ body {
   padding: 0;
   font-family: sans-serif;
   box-sizing: border-box;
+}
+
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 0px none #ffffff;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e1e1e1;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #e1e1e1;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  border: 0px none #ffffff;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-track:hover {
+  background: transparent;
+}
+::-webkit-scrollbar-track:active {
+  background: transparent;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
 }

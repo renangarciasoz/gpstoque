@@ -35,7 +35,7 @@ class App extends React.Component {
                     <AuthButton />
                 </div>
             </div>
-            <div className="content">
+            <div className="app-content">
                 <Route path="/application/dashboard" component={Dashboard} />
                 <Route path="/application/support-area" component={SupportArea} />
                 <Route path="/application/warehouse" component={Warehouse} />
