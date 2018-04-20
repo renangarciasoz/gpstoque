@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { auth } from './App';
+import Modal from "react-responsive-modal";
 
 function validate(email, password) {
     return {
@@ -13,6 +14,9 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            open: false,
+            modalMessage: '',
+            modalTitle: '',
             redirectToReferrer: false,
             email: '',
             password: '',
@@ -38,6 +42,14 @@ class Login extends React.Component {
         });
     }
 
+    onOpenModal = () => {
+        this.setState({ open: true });
+    };
+    
+    onCloseModal = () => {
+        this.setState({ open: false });
+    };
+
     handleSubmit = (evt) => {
         const { email, password } = this.state;
         
@@ -45,16 +57,19 @@ class Login extends React.Component {
             return;
         }
 
-        if(email === 'teste@teste' && password === 'teste') {
+        if(email === 'admin@admin.com' && password === 'admin') {
             auth.authenticate(() => {
                 this.setState({ redirectToReferrer: true });
             });
         } else {
-            alert('email: teste@teste senha: teste');
+            this.setState({
+                open: true,
+                modalTitle: 'Verifique o e-mail ou senha.',
+                modalMessage: `O E-mail "${email}" ou senha digitados não foi encontrado em nosso banco de dados, tente utilizar outro.`
+            });
         }
 
         evt.preventDefault();
-        // alert(`Signed up with email: ${email} password: ${password}`);
     }
 
     canBeSubmitted() {
@@ -63,8 +78,13 @@ class Login extends React.Component {
         return !isDisabled;
     }
 
-    resetPassword(evt) {
-        alert('Resetar senha em construção');
+    resetPassword = (evt) => {
+        this.setState({
+            open: true,
+            modalTitle: 'Funcionalidade em construção',
+            modalMessage: 'Desculpe o transtorno, estamos desenvolvendo essa funcionalidade.'
+        });
+
         evt.preventDefault();
     }
 
@@ -115,11 +135,17 @@ class Login extends React.Component {
                             />
                         </div>
                         <div className='buttons-form-group'>
-                            <button value='Entrar' className='submit' disabled={isDisabled}>Entrar</button>
+                            <button value='Entrar' className='submit' disabled={isDisabled} onClick={this.handleSubmit}>Entrar</button>
                             <button value='Esqueci minha senha' className='reset-password' onClick={this.resetPassword}>Esqueci minha senha</button>
                         </div>
                     </form>
                 </div>
+                <Modal open={this.state.open} onClose={this.onCloseModal} little>
+                    <h2>{this.state.modalTitle}</h2>
+                    <p>
+                        {this.state.modalMessage}
+                    </p>
+                </Modal>
             </div>
         );
     }

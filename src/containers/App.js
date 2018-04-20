@@ -5,18 +5,36 @@ import Dashboard from './Dashboard';
 import SupportArea from './SupportArea';
 import Warehouse from './Warehouse';
 import Login from './Login';
+import Modal from "react-responsive-modal";
 
 class App extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            open: false,
+            modalMessage: '',
+            modalTitle: '',
+        }
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(event) {
-        alert("Busca ainda está em construção");
+        this.setState({
+            open: true,
+            modalTitle: 'Funcionalidada em construção',
+            modalMessage: 'Desculpe o transtorno, estamos desenvolvendo essa funcionalidade.'
+        })
         event.preventDefault();
     }
+
+    onOpenModal = () => {
+        this.setState({ open: true });
+    };
+    
+    onCloseModal = () => {
+        this.setState({ open: false });
+    };
 
     Protected = () => (
         <div className="wrapper-right">
@@ -40,6 +58,13 @@ class App extends React.Component {
                 <Route path="/application/support-area" component={SupportArea} />
                 <Route path="/application/warehouse" component={Warehouse} />
             </div>
+
+            <Modal open={this.state.open} onClose={this.onCloseModal} little>
+                <h2>{this.state.modalTitle}</h2>
+                <p>
+                    {this.state.modalMessage}
+                </p>
+            </Modal>
         </div>
     );
 
