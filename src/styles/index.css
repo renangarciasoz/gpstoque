@@ -179,6 +179,18 @@
   100% {
     transform: translateX(0%); } }
 
+.warehouse {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+  .warehouse .component-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row; }
+
 .menu-left {
   width: 110px;
   min-width: 110px;
@@ -324,6 +336,22 @@ body {
   padding: 0;
   font-family: sans-serif;
   box-sizing: border-box; }
+
+.custom-modal {
+  border-radius: 6px;
+  font-family: 'PT Sans', sans-serif; }
+  .custom-modal svg {
+    fill: rgba(0, 0, 0, 0.4); }
+  .custom-modal h2 {
+    font-size: 38px;
+    color: #233539;
+    letter-spacing: -1.1px;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: bold;
+    padding: 0 50px 0 0; }
+  .custom-modal p {
+    font-weight: 400;
+    padding: 0 50px 0 0; }
 
 ::-webkit-scrollbar {
   width: 7px;

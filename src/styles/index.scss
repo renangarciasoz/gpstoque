@@ -2,6 +2,7 @@
 @import './containers/App.scss';
 @import './containers/SupportArea.scss';
 @import './containers/Login.scss';
+@import './containers/Warehouse.scss';
 
 // Components
 @import './components/MenuLeft.scss';
@@ -17,6 +18,29 @@ body {
   box-sizing: border-box;
 }
 
+.custom-modal {
+  border-radius: 6px;
+  font-family: 'PT Sans', sans-serif;
+
+  svg {
+    fill: rgba(0,0,0,0.4  );
+  }
+
+  h2 {
+    font-size: 38px;
+    color: #233539;
+    letter-spacing: -1.1px;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: bold;
+    padding: 0 50px 0 0;
+  }
+
+  p {
+    font-weight: 400;
+    padding: 0 50px 0 0;
+  }
+
+}
 
 ::-webkit-scrollbar {
   width: 7px;

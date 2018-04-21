@@ -45,26 +45,26 @@ class Login extends React.Component {
     onOpenModal = () => {
         this.setState({ open: true });
     };
-    
+
     onCloseModal = () => {
         this.setState({ open: false });
     };
 
     handleSubmit = (evt) => {
         const { email, password } = this.state;
-        
+
         if (!this.canBeSubmitted()) {
             return;
         }
 
-        if(email === 'admin@admin.com' && password === 'admin') {
+        if (email === 'admin@admin.com' && password === 'admin') {
             auth.authenticate(() => {
                 this.setState({ redirectToReferrer: true });
             });
         } else {
             this.setState({
                 open: true,
-                modalTitle: 'Verifique o e-mail ou senha.',
+                modalTitle: 'Verifique seu e-mail ou senha.',
                 modalMessage: `O E-mail "${email}" ou senha digitados não foi encontrado em nosso banco de dados, tente utilizar outro.`
             });
         }
@@ -140,7 +140,7 @@ class Login extends React.Component {
                         </div>
                     </form>
                 </div>
-                <Modal open={this.state.open} onClose={this.onCloseModal} little>
+                <Modal open={this.state.open} onClose={this.onCloseModal} classNames={{ modal: 'custom-modal' }} little>
                     <h2>{this.state.modalTitle}</h2>
                     <p>
                         {this.state.modalMessage}
