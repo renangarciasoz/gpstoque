@@ -1,0 +1,205 @@
+
+{
+    /* DUVIDAS: 
+    *  Para poder solicitar é id de usuário ou número de contrato?
+    * 
+    */
+
+    /* Uniforme 
+    *
+    * Tipo: 1(Roupa), 2(Calçados), 3(Acessório), 4(Outros).
+    * 
+    */
+    "uniform": {
+        "id": 1111,
+        "nome": "Camiseta social segurança",
+        "tipo": 1,
+        "purchase-price": 13.90,
+        "amount": 1,
+        "image": "https://images-americanas.b2w.io/produtos/01/00/sku/28626/5/28626566_1SZ.jpg",
+        "date": 201804140800,
+        "active": true,
+        "sanitation": 0,
+        "recycle": 0
+    }
+
+
+    /* Cliente 
+    *
+    * registration-number: CR (Código de Registro do cliente).
+    * 
+    */
+    "client": {
+        "id": 1111,
+        "registration-number": 1600924,
+        "social-name": "Fulano de tal",
+        "fantasy-name": "FULANO",
+        "cnpj": 299820001018,
+        "image": "http://oriondevelop.com.br/candidato1/wp-content/uploads/2016/06/fulano.jpg",
+        "address": "Avenida Santo Antônio, 348 - Vila Osasco - Osasco/SP - 06086065",
+        "phone": 11964582145,
+        "active": true,
+        "registration-date": 20180809154900
+    }
+
+
+    /* Fornecedor */
+    "provider": {
+        "id": 1111,
+        "social-name": "Fulano de tal",
+        "fantasy-name": "FULANO",
+        "cnpj": 299820001018,
+        "image": "http://oriondevelop.com.br/candidato1/wp-content/uploads/2016/06/fulano.jpg",
+        "address": "Avenida Santo Antônio, 348 - Vila Osasco - Osasco/SP - 06086065",
+        "phone": 11964582145,
+        "active": true,
+        "registration-date": 20180809154900
+    }
+
+
+    /* Usuário */
+    "user": {
+        "id": 1111,
+        "employee-name": "Renan Santana",
+        "login": "renangarciasoz"
+        "email": "renangarcia@hotmail.com",
+        "password": 123456789,
+        "ocupation": "Auxiliar Financeiro",
+        "image": "https://static1.squarespace.com/static/512ec8a4e4b021266dcac0fe/51abcb82e4b086ca8d2213c2/51abcbcee4b00e0c6e19340c/1370213326845/Fulano_BillClinton.jpg",
+        "active": true,
+        "registration-date": 20180809154900
+    }
+
+
+    /* Solicitação de uniformes
+    *
+    * Status: 1(Pendente), 2(Em andamento), 3(Recusada), 4(Terminada).
+    * 
+    */
+    "uniform-request": {
+        "id": 1,
+        "id-user": 1,
+        "id-employee": 1,
+        "date": 201804140800,
+        "status": 1,
+        "uniforms": [
+            {
+                "id": 1111,
+                "amount-request": 1,
+                "amount": 0
+            },
+            {
+                "id": 1112,
+                "amount-request": 2,
+                "amount": 0
+            },
+            {
+                "id": 1113,
+                "amount-request": 3,
+                "amount": 0
+            }
+        ]
+    }
+
+
+    /* Pedido de uniformes
+    *
+    * Status: 1(Pendente), 2(Enviado), 3(Recebido), 4(Recusado).
+    * 
+    */
+    "provider-order": {
+        "id": 1,
+        "id-user": 1,
+        "id-provider": 1,
+        "date": 201804140800,
+        "status": 1,
+        "uniforms": [
+            {
+                "id": 1111,
+                "amount-request": 1,
+                "amount": 0
+            },
+            {
+                "id": 1112,
+                "amount-request": 2,
+                "amount": 0
+            },
+            {
+                "id": 1113,
+                "amount-request": 3,
+                "amount": 0
+            }
+        ]
+    }
+
+
+    /* Devolução de uniformes */
+    "devolution": {
+        "id": 1,
+        "id-user": 1,
+        "id-employee": 1,
+        "date": 201804140800,
+        "uniforms": [
+            {
+                "id": 1111,
+                "amount": 1
+            },
+            {
+                "id": 1112,
+                "amount": 2
+            },
+            {
+                "id": 1113,
+                "amount": 3
+            }
+        ]
+    }
+
+
+    /* Higienização de uniformes */
+    "sanitation": {
+        "id": 1,
+        "id-user": 1,
+        "date": 201804140800,
+        "uniforms": [
+            {
+                "id": 1111,
+                "sent-amount": 1,
+                "amount": 0
+            },
+            {
+                "id": 1112,
+                "sent-amount": 2,
+                "amount": 0
+            },
+            {
+                "id": 1113,
+                "sent-amount": 3,
+                "amount": 0
+            }
+        ]
+    }
+    
+
+    /* Reciclagem de uniformes */
+    "recycle": {
+        "id": 1,
+        "id-user": 1,
+        "date": 201804140800,
+        "uniforms": [
+            {
+                "id": 1111,
+                "amount": 1
+            },
+            {
+                "id": 1112,
+                "amount": 2
+            },
+            {
+                "id": 1113,
+                "amount": 3
+            }
+        ]
+    }
+}
+
