@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, withRouter, Redirect } from "react-router-dom";
 import MenuLeft from '../components/MenuLeft';
 import Dashboard from './Dashboard';
-import SupportArea from './SupportArea';
+import SupportArea from './SupportArea/SupportArea';
+import Uniform from './Uniform';
 import Warehouse from './Warehouse';
 import Login from './Login';
 import Modal from "react-responsive-modal";
@@ -54,8 +55,9 @@ class App extends React.Component {
                 </div>
             </div>
             <div className="app-content">
-                <Route path="/application/dashboard" component={Dashboard} />
                 <Route path="/application/support-area" component={SupportArea} />
+                <Route path="/application/uniform" component={Uniform} />
+                <Route path="/application/dashboard" component={Dashboard} />
                 <Route path="/application/warehouse" component={Warehouse} />
             </div>
 

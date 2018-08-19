@@ -98,6 +98,13 @@
     height: 100%;
     display: flex;
     flex-direction: row; }
+    .support-area .component-wrapper .content {
+      width: 100%;
+      height: 100%;
+      border-radius: 6px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.03);
+      padding: 20px 13px 20px 20px; }
 
 .login-wrapper {
   min-height: 100vh;
@@ -192,8 +199,8 @@
     flex-direction: row; }
 
 .menu-left {
-  width: 110px;
-  min-width: 110px;
+  width: 136px;
+  min-width: 136px;
   min-height: 100vh;
   background-color: #fafbfc;
   border-right: 1px solid #e7e9ea;
@@ -269,7 +276,7 @@
 .sub-menu {
   max-height: 64vh;
   width: 25%;
-  min-width: 280px;
+  min-width: 300px;
   border-radius: 6px;
   background-color: #ffffff;
   box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.03);
@@ -277,7 +284,8 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 20px 13px 20px 20px; }
+  padding: 20px 13px 20px 20px;
+  margin-right: 20px; }
   .sub-menu .title {
     font-size: 11px;
     font-weight: normal;
