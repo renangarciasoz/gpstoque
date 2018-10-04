@@ -22,7 +22,7 @@
         line-height: normal;
         letter-spacing: 0.1px;
         text-align: left;
-        color: #323c47;
+        color: linear-gradient(315deg,#0097f6,#005eea);
         margin: 15px 10px;
         text-transform: uppercase;
     }
@@ -57,7 +57,7 @@
             .icon {
                 margin-right: 24px;
                 font-size: 28px;
-                color: #4da1ff;
+                color: linear-gradient(315deg,#0097f6,#005eea);;
             }
     
             .item-name {
@@ -68,7 +68,7 @@
             }
     
             &:hover,  &.active {
-                background-color: #4da1ff;
+                background: linear-gradient(315deg,#0097f6,#005eea);
                 border: solid 1px transparent;
                 
                 .icon, .item-name {

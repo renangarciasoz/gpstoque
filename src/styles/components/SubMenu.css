@@ -19,7 +19,7 @@
     line-height: normal;
     letter-spacing: 0.1px;
     text-align: left;
-    color: #323c47;
+    color: linear-gradient(315deg, #0097f6, #005eea);
     margin: 15px 10px;
     text-transform: uppercase; }
   .sub-menu .items {
@@ -50,14 +50,14 @@
       .sub-menu .items .item .icon {
         margin-right: 24px;
         font-size: 28px;
-        color: #4da1ff; }
+        color: linear-gradient(315deg, #0097f6, #005eea); }
       .sub-menu .items .item .item-name {
         font-size: 14px;
         color: #323c47;
         text-transform: capitalize;
         white-space: nowrap; }
       .sub-menu .items .item:hover, .sub-menu .items .item.active {
-        background-color: #4da1ff;
+        background: linear-gradient(315deg, #0097f6, #005eea);
         border: solid 1px transparent; }
         .sub-menu .items .item:hover .icon, .sub-menu .items .item:hover .item-name, .sub-menu .items .item.active .icon, .sub-menu .items .item.active .item-name {
           color: #ffffff; }

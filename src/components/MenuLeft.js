@@ -1,43 +1,81 @@
 import React from 'react';
 import { Route, Link } from "react-router-dom";
+import { ConnectedRouter } from "connected-react-router";
+import { connect } from 'react-redux';
+import history from "../routes/history";
 
-const MenuLeft = ({ auth }) => (
-    auth.isAuthenticated ? (
-        <div className="menu-left">
-            <div className="logo"></div>
-            <div className="menu-items">
-                {/* <ActiveMenuItem activeOnlyWhenExact={true} to="/application/dashboard" label="Dashboard" icon="fas fa-chart-line" /> */}
-                {/* <ActiveMenuItem activeOnlyWhenExact={true} to="/application/support-area" label="Área de apoio" icon="fas fa-people-carry" />
-                <ActiveMenuItem activeOnlyWhenExact={true} to="/application/warehouse" label="Almoxarifado" icon="fas fa-box-open" /> */}
-                
-                <ActiveMenuItem activeOnlyWhenExact={true} to="/application/support-area/request-list" label="Área de apoio" icon="fas fa-file-alt" />
-                <ActiveMenuItem activeOnlyWhenExact={true} to="/application/uniform/list" label="Uniformes" icon="fas fa-male" />
-                <ActiveMenuItem activeOnlyWhenExact={true} to="/application/order" label="Pedidos / Fornecedor" icon="fas fa-shopping-bag" />
-                <ActiveMenuItem activeOnlyWhenExact={true} to="/application/client" label="Clientes / Contratos" icon="fas fa-id-badge" />
-                <ActiveMenuItem activeOnlyWhenExact={true} to="/application/others" label="Outros" icon="fas fa-recycle" />
-            </div>
-            <div className="footer">
-                <p>Versão 1.0 copyright</p>
-            </div>
-        </div>
-    ) : (   
-        <div className="menu-left">
-            <div className="logo"></div>
-            <div className="menu-items">
-            </div>
-            <div className="footer">
-                <p>Versão 1.0.1.2</p>
-            </div>
-        </div>
-    )
-);
+class MenuLeft extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            menu: [{
+                    path: '/application/support-area', 
+                    label: 'Área de apoio', 
+                    icon: 'fas fa-file-alt'
+                },
+                {
+                    path: '/application/uniform', 
+                    label: 'Uniformes', 
+                    icon: 'fas fa-male'
+                },
+                {
+                    path: '/application/order', 
+                    label: 'Pedidos / Fornecedor', 
+                    icon: 'fas fa-shopping-bag'
+                },
+                {
+                    path: '/application/client', 
+                    label: 'Clientes / Contratos', 
+                    icon: 'fas fa-id-badge'
+                },
+                {
+                    path: '/application/others', 
+                    label: 'Outros', 
+                    icon: 'fas fa-recycle'
+                }]
+        }
+    }
+    render() {
+        const { isAuthenticated } = this.props.auth;
+        const { pathname } = this.props.router.location;
 
-const ActiveMenuItem = ({ label, to, activeOnlyWhenExact, icon }) => (
+        return (
+            isAuthenticated ? (
+                <div className="menu-left">
+                    <div className="logo"></div>
+                    <div className="menu-items">
+                        <ConnectedRouter history={history}>
+                            <div>
+                                {this.state.menu.map((menu, i) => {
+                                    return <ActiveMenuItem key={i} activeOnlyWhenExact={true} to={menu.path} pathname={pathname} label={menu.label} icon={menu.icon} />
+                                })}
+                            </div>
+                        </ConnectedRouter>
+                    </div>
+                    <div className="footer">
+                        <p>Versão 1.0 copyright</p>
+                    </div>
+                </div>
+            ) : (
+                    <div className="menu-left">
+                        <div className="logo"></div>
+                        <div className="menu-items">
+                        </div>
+                        <div className="footer">
+                            <p>Versão 1.0.1.2</p>
+                        </div>
+                    </div>
+                )
+        )
+    }
+}
+
+const ActiveMenuItem = ({ label, to, pathname, activeOnlyWhenExact, icon }) => (
     <Route
         path={to}
         exact={activeOnlyWhenExact}
-        children={({ match }) => (
-            <Link to={to} className={match ? "item active" : "item"}>
+        children={() => (
+            <Link to={to} className={pathname.includes(to) ? "item active" : "item"}>
                 <div className="rectangle"></div>
                 <div className="label">
                     <i className={icon}></i>
@@ -48,5 +86,11 @@ const ActiveMenuItem = ({ label, to, activeOnlyWhenExact, icon }) => (
     />
 );
 
+function mapStateToProps(state) {
+    return {
+        auth: state.auth,
+        router: state.router
+    };
+}
 
-export default MenuLeft;
+export default connect(mapStateToProps, {})(MenuLeft);

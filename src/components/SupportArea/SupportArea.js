@@ -1,10 +1,10 @@
 import React from 'react';
 import SubMenu from '../../components/SubMenu';
-import { BrowserRouter as Router, Route, withRouter, Redirect } from "react-router-dom";
-import DevolutionList from "./DevolutionList";
-import DevolutionRegister from "./DevolutionRegister";
-import RequestList from "./RequestList";
-import RequestRegister from "./RequestRegister";
+import { Route } from "react-router-dom";
+import Devolutions from "./Devolutions";
+// import DevolutionRegister from "./DevolutionRegister";
+import Requests from "./Requests";
+// import RequestRegister from "./RequestRegister";
 
 class SupportArea extends React.Component {
     constructor(props) {
@@ -17,29 +17,29 @@ class SupportArea extends React.Component {
                 title : 'Área de apoio',
                 items : [
                     {
-                        route: `${path}request-list`,
+                        route: `${path}requests`,
                         label: 'Solicitações',
                         icon: 'fas fa-folder-open',
-                        component: RequestList
+                        component: Requests
                     },
                     {
-                        route: `${path}devolution-list`,
+                        route: `${path}devolutions`,
                         label: 'Devoluções',
                         icon: 'fas fa-folder-open',
-                        component: DevolutionList
+                        component: Devolutions
                     },
-                    {
-                        route: `${path}request-register`,
-                        label: 'Registrar solicitação',
-                        icon: 'fas fa-folder-open',
-                        component: RequestRegister
-                    },
-                    {
-                        route: `${path}devolution-register`,
-                        label: 'Registrar devolução',
-                        icon: 'fas fa-folder-open',
-                        component: DevolutionRegister
-                    }
+                    // {
+                    //     route: `${path}request-register`,
+                    //     label: 'Registrar solicitação',
+                    //     icon: 'fas fa-folder-open',
+                    //     component: RequestRegister
+                    // },
+                    // {
+                    //     route: `${path}devolution-register`,
+                    //     label: 'Registrar devolução',
+                    //     icon: 'fas fa-folder-open',
+                    //     component: DevolutionRegister
+                    // }
                 ]
             }
         }

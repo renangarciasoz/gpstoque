@@ -34,12 +34,12 @@
         will-change: width;
         height: 100%;
         border-radius: 16px;
-        background-color: #4192ec;
+        background: linear-gradient(315deg, #0097f6, #005eea);
         box-shadow: 2px 3px 11px 0 rgba(1, 172, 253, 0.74);
         transition: 0.2s ease-in; }
       .menu-left .menu-items .item .label {
         width: 100%;
-        color: #4da1ff;
+        color: linear-gradient(315deg, #0097f6, #005eea);
         font-size: 20px;
         text-align: center;
         display: flex;

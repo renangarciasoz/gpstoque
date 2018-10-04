@@ -7,17 +7,7 @@ class RequestRegister extends React.Component {
         this.state = {
         }
     }
-
-    componentWillMount() {
-        this.getData();
-    }
-
-    getData = () => (
-        // axios.get('https://gpstoque-api.herokuapp.com/Uniform')
-        // .then(response => console.log(response)),
-        console.log('foi')
-    );
-
+    
     render() {
         return (
             <div className="request-register">
