@@ -1,33 +1,33 @@
-# FRONT MERCADO LIVRE
+# GPSToque
 
-A challenge published by Mercado Livre.
+Um projeto para a empresa [Grupo GPS](http://gpssa.com.br).
 
-Created from Facebook boilerplate [create-react-app](https://github.com/facebookincubator/create-react-app/).
+Boilerplate criado pelo Facebook - [create-react-app](https://github.com/facebookincubator/create-react-app/).
 
-## Dependencies
+## Dependências
 
 * [Node.js](https://nodejs.org/en/download/)
 
-## Let's start?
+## Vamos começar?
 
-git clone https://github.com/renangarciasoz/front-mercado-livre.git
+git clone https://github.com/renangarciasoz/gpstoque.git
 
-cd ./front-mercado-livre
+cd ./gpstoque
 
-yarn
+npm i
 
-yarn start
+npm start
 
 [http://localhost:3000/](http://localhost:3000/).
 
-## Commands!
+## Comandos!
 
-* yarn start - Start live-reloading development server.
-* yarn test  - Run test suite.
-* yarn test:watch  - Run test suite with auto-reloading.
-* yarn coverage - Generate test coverage.
-* yarn build - Builds the app for production to the build folder.
+* npm start - Start live-reloading development server.
+* npm test  - Run test suite.
+* npm test:watch  - Run test suite with auto-reloading.
+* npm coverage - Generate test coverage.
+* npm build - Builds the app for production to the build folder.
 
-## Acknowledgements
-* @renangarciasoz
-Thank you very much!
+## Agradecimentos
+[@renangarciasoz](https://github.com/renangarciasoz)
+Muito obrigado!

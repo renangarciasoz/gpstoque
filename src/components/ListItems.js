@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ItemsWrapper = styled.div`
-    width: 100%;
-    max-width: 747px;
+    max-width: 100%;
+    height: 100%;
     display: flex;
     margin-top: 20px;
     position: relative;
@@ -21,6 +21,8 @@ const TableMain = styled.table`
 `
 
 const TableHeader = styled.tr`
+    position: -webkit-sticky; /* apenas chrome e webkit nightly */
+    top: 0;
     border-bottom: 1px solid #ccc;
     border-top: 1px solid #ccc;
 `
@@ -80,9 +82,6 @@ const BtnAction = styled.button`
 
 const LoadingWrapper = styled.div`
     height: 100%;
-    position: absolute;
-    bottom: -125px;
-    right: 310px;
     display: flex;
     align-items: center;
     z-index: 999;
@@ -97,11 +96,9 @@ const Loading = styled.img`
 
 const NotFoundItems = styled.div`
     height: 100%;
-    position: absolute;
-    bottom: -90px;
-    right: 290px;
     display: flex;
     align-items: center;
+    white-space: nowrap;
 `
 
 class ListItems extends React.Component {

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// const HeaderComponent = styled.div`
-
-// `
+const Header = styled.div`
+    width: 100%;
+`
 
 const HeaderWrapper = styled.div`
     width: 100%;
@@ -64,7 +64,7 @@ class HeaderComponent extends React.Component {
 
     render() {
         return (
-            <header>
+            <Header>
                 <HeaderWrapper>
                     <Title>{this.props.title}</Title> 
                     <AddButton>
@@ -76,7 +76,7 @@ class HeaderComponent extends React.Component {
                     <i className="fas fa-search"></i>
                     <InputSearch placeholder={this.props.searchText} onChange={this.handleSearch} value={this.state.searchValue}></InputSearch>
                 </SearchWrapper>
-            </header>
+            </Header>
         )
     }
 }
