@@ -47,14 +47,6 @@ const TdValue = styled.td`
     border-bottom: 1px solid #ccc;
 `
 
-const ItemInValue = styled.div`
-    padding: 0px 6px;
-    background: var(--light);
-    text-align: center;
-    border-radius: 2px;
-    margin-right: 3px;
-`
-
 const TableActions = styled.table`
     font-size: 18px;
 `
@@ -105,11 +97,11 @@ class ListItems extends React.Component {
     constructor(props){
         super(props) 
         this.state = {
-            
+            itemsNotActive: 0
         }
     }
     render() {
-        if (this.props.items.length && this.props.items.length > 0 && !this.props.loading) {    
+        if (this.props.items.length && this.props.items.length > 0 && !this.props.loading && this.state.itemsNotActive !== this.props.items.length) {    
             return (
                 <ItemsWrapper>
                     <Table items={this.props.items}/>
@@ -117,7 +109,7 @@ class ListItems extends React.Component {
                 </ItemsWrapper>
             )
         }
-        else if (!this.props.loading && (!this.props.items.length || this.props.items.length <= 0)) {
+        else if (!this.props.loading && (!this.props.items.length || this.props.items.length <= 0 || this.state.itemsNotActive === this.props.items.length)) {
             return (
                 <ItemsWrapper>
                     <NotFoundItems>Não possui items...</NotFoundItems>
@@ -160,7 +152,10 @@ class Header extends React.Component {
                 updatedAt: "Data de atualização",
                 uniforms: "Uniformes",
                 description: "Descrição",
-                id: "Código"
+                id: "Identificador único",
+                code: "Código",
+                status: "Status",
+                user: "Funcionário que criou",
             }
         }
     }
@@ -173,6 +168,11 @@ class Header extends React.Component {
                     
                     Object.keys(item).map((propKey, i) => {
                         
+                        // Se o item for estiver ativo exibir na tabela.
+                        if(propKey === "active") {
+                            return false
+                        }
+
                         // Não exibir properties que contém "_", pois são criadas pelo mongodb.
                         if (propKey.includes("_")){
                             return false
@@ -195,12 +195,17 @@ class Items extends React.Component {
             <tr>
                 {this.props.items && this.props.items.map((item) => {
                     let table = []
+                    
+                    // Se o item não for tiver a propriedade active, não entrar no loop.
+                    if(!item.active) {
+                        return false;
+                    }
 
                     Object.keys(item).map((propKey, i) => {                        
                         let prop = item[propKey]
 
                         // Se o item for estiver ativo exibir na tabela.
-                        if(propKey === "active" && !prop) {
+                        if(propKey === "active") {
                             return false
                         }
 
@@ -221,14 +226,18 @@ class Items extends React.Component {
                             let propArray = []
 
                             prop.map((propInList, i) => {
-                                return propArray.push(<ItemInValue key={i}>{propInList.name} </ItemInValue>)
+                                return propArray.push(`${propInList.name}, `)
                             });
 
                             return table.push(<TdValue key={i}>{propArray}</TdValue>)
-                        } else {
-                            return table.push(<TdValue key={i}>{prop}</TdValue>)
                         }
 
+                        // Se a property for um objeto, exibir o nome.
+                        if(prop.name) {
+                            return table.push(<TdValue key={i}>{prop.name}</TdValue>)
+                        }
+                            
+                        return table.push(<TdValue key={i}>{prop}</TdValue>)
                     })
 
                     return table.reverse();
@@ -248,6 +257,12 @@ class ItemActions extends React.Component {
                     </TableHeader>
                     <tr>
                         {!this.props.loading && this.props.items && this.props.items.map((item, i) => {
+
+                            // Se o item não for tiver a propriedade active, não entrar no loop.
+                            if(!item.active) {
+                                return false;
+                            }
+
                             return (
                                 <TdActions key={i}>
                                     <BtnAction edit><i className="fas fa-pencil-alt"></i></BtnAction>
