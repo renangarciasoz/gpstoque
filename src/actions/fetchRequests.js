@@ -10,7 +10,8 @@ export function setRequests(requests) {
 
 export function fetchRequests() {
     return dispatch => {
-        axios.get('https://gpstoque-api.herokuapp.com/request')
+        
+        return axios.get('https://gpstoque-api.herokuapp.com/request')
             .then(data => {
                 dispatch(setRequests(data.data))
             })

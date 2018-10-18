@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import history from '../routes/history';
 
 const Header = styled.div`
     width: 100%;
@@ -18,9 +19,11 @@ const Title = styled.h3`
 const AddButton = styled.button`
     background: linear-gradient(315deg,#0097f6,#005eea);
     border: none;
-    border-radius: 2px;
+    border-radius: 4px;
     padding: 10px;
     color: white;
+    cursor: pointer;
+    outline: none;
 `
 
 const ButtonText = styled.span`
@@ -53,7 +56,6 @@ class HeaderComponent extends React.Component {
         }
     }
 
-    // input change handler
     handleSearch = (e) => {
         this.setState({
             searchValue: e.target.value
@@ -62,12 +64,16 @@ class HeaderComponent extends React.Component {
         this.props.action(e.target.value);
     } 
 
+    toRegisterForm() {
+        history.push(this.props.link)
+    }
+
     render() {
         return (
             <Header>
                 <HeaderWrapper>
                     <Title>{this.props.title}</Title> 
-                    <AddButton>
+                    <AddButton onClick={() => this.toRegisterForm()}>
                         <i className="fas fa-plus"></i> 
                         <ButtonText>{this.props.buttonText}</ButtonText>
                     </AddButton>

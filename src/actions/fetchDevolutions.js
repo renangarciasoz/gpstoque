@@ -9,8 +9,10 @@ export function setDevolutions(devolutions) {
 }
 
 export function fetchDevolutions() {
+
     return dispatch => {
-        axios.get('https://gpstoque-api.herokuapp.com/devolution')
+    
+        return axios.get('https://gpstoque-api.herokuapp.com/devolution')
             .then(data => {
                 dispatch(setDevolutions(data.data))
             })

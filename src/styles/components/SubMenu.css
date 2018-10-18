@@ -45,7 +45,8 @@
       background-color: #ffffff;
       border: solid 1px #e9eff4;
       text-decoration: none;
-      transition: 0.2s ease; }
+      transition: 0.2s ease;
+      outline: none; }
       .sub-menu .items .item .icon {
         margin-right: 24px;
         font-size: 28px;

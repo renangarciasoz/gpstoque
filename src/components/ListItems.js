@@ -1,70 +1,66 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const ItemsWrapper = styled.div`
     max-width: 100%;
     height: 100%;
+    max-height: 100%;
     display: flex;
     margin-top: 20px;
     position: relative;
+    overflow: scroll;
 `
 
-const TableScroll = styled.div`
-    display: flex;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    padding-bottom: 2px;
-`
-
-const TableMain = styled.table`
-    font-size: 18px;
-`
-
-const TableHeader = styled.tr`
-    position: -webkit-sticky; /* apenas chrome e webkit nightly */
+const Th = styled.th`
+    background: white;
+    position: sticky;
     top: 0;
-    border-bottom: 1px solid #ccc;
+    z-index: 10;
     border-top: 1px solid #ccc;
-`
-
-const ThTitle = styled.th`
-    padding: 10px 20px;
-    text-align: center;
-    max-width: 200px;
-    white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-weight: 500;
-` 
-
-const TdValue = styled.td`
-    padding: 10px 20px;
-    max-width: 200px;
-    white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-weight: 500;
     border-bottom: 1px solid #ccc;
-`
-
-const TableActions = styled.table`
+    box-sizing: content-box;
+    padding: 10px 20px;
+    max-width: 230px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 18px;
+    font-weight: 400;
+
+    ${props => props.action && css`
+        text-align: center;
+        background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 25%);
+        right: 0;
+    `}
 `
 
-const TdActions = styled.td`
-    display: flex;
-    padding: 10px 0px;
-    min-height: 48px;
-    justify-content: space-around;
-    align-items: center;
+const Td = styled.td`
+    padding: 10px 20px;
+    max-width: 200px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
     border-bottom: 1px solid #ccc;
+
+    ${props => props.action && css`
+        z-index: 5;
+        position: sticky;
+        right: 0;
+        background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 25%);
+    `}
+`
+
+const TrItem = styled.tr`
+    cursor: pointer
 `
 
 const BtnAction = styled.button`
-    width: 30px
+    width: 30px;
     height: 20px;
     border: none;
     font-size: 12px;
+    margin:0 5px;
     border-radius: 2px;
     border: 1px solid #ccc;
     background: transparent;
@@ -99,13 +95,19 @@ class ListItems extends React.Component {
         this.state = {
             itemsNotActive: 0
         }
+
+        this.changeNumber = this.changeNumber.bind(this)
     }
+
+    changeNumber(value) {
+        this.setState({itemsNotActive: value})
+    }
+
     render() {
-        if (this.props.items.length && this.props.items.length > 0 && !this.props.loading && this.state.itemsNotActive !== this.props.items.length) {    
+        if (this.props.items.length && this.props.items.length > 0 && !this.props.loading && this.state.itemsNotActive !== this.props.items.length) { 
             return (
                 <ItemsWrapper>
-                    <Table items={this.props.items}/>
-                    <ItemActions items={this.props.items}/>
+                    <Table items={this.props.items} changeNumber={this.changeNumber}/>
                 </ItemsWrapper>
             )
         }
@@ -127,16 +129,48 @@ class ListItems extends React.Component {
 }
 
 class Table extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            openModal: false,
+            itemModal: ''
+        }
+    }
+
+    componentWillMount() {
+        let notActive = 0
+
+        this.props.items && this.props.items.map((item) => {
+            if(!item.active) {
+                notActive += 1
+
+                return true
+            }
+
+            return false
+        })
+
+        return notActive > 0 ? this.props.changeNumber(notActive) : false
+    }
+
+    onOpenModal = (item) => {
+        this.setState({ openModal: true, itemModal: item });
+    };
+
+    onCloseModal = () => {
+        this.setState({ openModal: false, itemModal: ''});
+    };
+
     render() {
         return (
-            <TableScroll>
-                <TableMain>
-                    <tbody>
-                        <Header items={this.props.items}/>
-                        <Items items={this.props.items}/>
-                    </tbody>
-                </TableMain>
-            </TableScroll>
+            <table>
+                <Header item={this.props.items[0]}/>
+                <tbody>
+                    {this.props.items && this.props.items.map((item, i) => {                
+                        return item && <Item key={i} item={item}/>
+                    })}
+                </tbody>
+            </table>
         )
     }
 }
@@ -152,127 +186,87 @@ class Header extends React.Component {
                 updatedAt: "Data de atualização",
                 uniforms: "Uniformes",
                 description: "Descrição",
-                id: "Identificador único",
+                id: "Identificador (QR Code)",
                 code: "Código",
                 status: "Status",
-                user: "Funcionário que criou",
+                user: "Funcionário responsável",
             }
         }
     }
 
     render() {
         return (
-            <TableHeader>
-                {this.props.items && this.props.items.map((item) => {
-                    let header = []
-                    
-                    Object.keys(item).map((propKey, i) => {
+            <thead>
+                <tr>
+                    {Object.keys(this.props.item).map((propKey, i) => {
                         
                         // Se o item for estiver ativo exibir na tabela.
                         if(propKey === "active") {
                             return false
                         }
-
+    
                         // Não exibir properties que contém "_", pois são criadas pelo mongodb.
                         if (propKey.includes("_")){
                             return false
                         }
-
+    
                         // Retornar o valor traduzido conforme o objeto "scaffolding" ou o valor da key.
-                        return header.push(<ThTitle key={i}>{this.state.scaffolding[propKey] || propKey}</ThTitle>)
-                    })
-
-                    return header.reverse();
-                })}
-            </TableHeader>
+                        return <Th key={i}>{this.state.scaffolding[propKey] || propKey}</Th>
+                    })}
+                    <Th action="true">Ações</Th>
+                </tr>
+            </thead>
         )
     }
 }
 
-class Items extends React.Component {
+class Item extends React.Component {
     render() {
         return (
-            <tr>
-                {this.props.items && this.props.items.map((item) => {
-                    let table = []
-                    
-                    // Se o item não for tiver a propriedade active, não entrar no loop.
-                    if(!item.active) {
-                        return false;
+            <TrItem>
+                {Object.keys(this.props.item).map((propKey, i) => {         
+                    let prop = this.props.item[propKey]
+
+                    // Se o item for estiver ativo exibir na tabela.
+                    if(propKey === "active") {
+                        return false
                     }
 
-                    Object.keys(item).map((propKey, i) => {                        
-                        let prop = item[propKey]
+                    // Não exibir properties que contém "_", pois são criadas pelo mongodb.
+                    if (propKey.includes("_")){
+                        return false
+                    }
 
-                        // Se o item for estiver ativo exibir na tabela.
-                        if(propKey === "active") {
-                            return false
-                        }
+                    // Se a property for uma data, formatá-la.
+                    if(propKey.includes("created") || propKey.includes("updated") ) {
+                        var date = new Date(prop)
 
-                        // Não exibir properties que contém "_", pois são criadas pelo mongodb.
-                        if (propKey.includes("_")){
-                            return false
-                        }
+                        prop = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+                    }
 
-                        // Se a property for uma data, formatá-la.
-                        if(propKey.includes("created") || propKey.includes("updated") ) {
-                            var date = new Date(prop);
+                    // Se a property for um Array de items, retornar cada item dentro de uma div.
+                    if(Array.isArray(prop)) {
+                        let propArray = []
 
-                            prop = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
-                        }
+                        prop.map((propInList, i) => {
+                            return propArray.push(`${propInList.name}, `)
+                        });
 
-                        // Se a property for um Array de items, retornar cada item dentro de uma div.
-                        if(Array.isArray(prop)) {
-                            let propArray = []
+                        return <Td key={i}>{propArray}</Td>
+                    }
 
-                            prop.map((propInList, i) => {
-                                return propArray.push(`${propInList.name}, `)
-                            });
-
-                            return table.push(<TdValue key={i}>{propArray}</TdValue>)
-                        }
-
-                        // Se a property for um objeto, exibir o nome.
-                        if(prop.name) {
-                            return table.push(<TdValue key={i}>{prop.name}</TdValue>)
-                        }
-                            
-                        return table.push(<TdValue key={i}>{prop}</TdValue>)
-                    })
-
-                    return table.reverse();
+                    // Se a property for um objeto, exibir o nome.
+                    if(prop.name) {
+                        return <Td key={i}>{prop.name}</Td>
+                    }
+                        
+                    return <Td key={i}>{prop}</Td>
                 })}
-            </tr>
-        )
-    }
-}
-
-class ItemActions extends React.Component {
-    render() {
-        return (
-            <TableActions>
-                <tbody>
-                    <TableHeader>
-                        <ThTitle>Ações</ThTitle>
-                    </TableHeader>
-                    <tr>
-                        {!this.props.loading && this.props.items && this.props.items.map((item, i) => {
-
-                            // Se o item não for tiver a propriedade active, não entrar no loop.
-                            if(!item.active) {
-                                return false;
-                            }
-
-                            return (
-                                <TdActions key={i}>
-                                    <BtnAction edit><i className="fas fa-pencil-alt"></i></BtnAction>
-                                    <BtnAction delete><i className="fas fa-trash"></i></BtnAction>
-                                </TdActions>
-                            )
-                        })}
-                    </tr>
-                </tbody>
-            </TableActions>
+                <Td action="true">
+                    <BtnAction edit><i className="fas fa-pencil-alt"></i></BtnAction>
+                    <BtnAction delete><i className="fas fa-trash"></i></BtnAction>
+                </Td>
+            </TrItem>
         )
     }
 }

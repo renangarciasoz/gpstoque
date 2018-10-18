@@ -17,7 +17,7 @@ export default function (ComposedComponent) {
 
         componentWillUpdate(nextProps) {
             if (!nextProps.isAuthenticated) {
-                history.push('/application/');
+                history.push('/application/support-area/requests');
             }
         }
 

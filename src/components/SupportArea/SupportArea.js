@@ -1,10 +1,9 @@
 import React from 'react';
 import SubMenu from '../../components/SubMenu';
-import { Route } from "react-router-dom";
-import Devolutions from "./Devolutions";
-// import DevolutionRegister from "./DevolutionRegister";
-import Requests from "./Requests";
-// import RequestRegister from "./RequestRegister";
+import { Route } from 'react-router-dom';
+import Devolutions from './Devolutions';
+import Requests from './Requests';
+import RegisterForm from "../RegisterForm";
 
 class SupportArea extends React.Component {
     constructor(props) {
@@ -19,27 +18,33 @@ class SupportArea extends React.Component {
                     {
                         route: `${path}requests`,
                         label: 'Solicitações',
-                        icon: 'fas fa-folder-open',
+                        header: {
+                            title:'Solicitações',
+                            searchText: 'Digite algo sobre a solicitação',
+                            registerText: 'Registrar uma solicitação',
+                            registerLink: 'requests-register',
+                        },
                         component: Requests
                     },
                     {
                         route: `${path}devolutions`,
                         label: 'Devoluções',
-                        icon: 'fas fa-folder-open',
+                        header: {
+                            title:'Devoluções',
+                            searchText: 'Digite algo sobre a devolução',
+                            registerText: 'Registrar uma devolução',
+                            registerLink: 'devolutions-register',
+                        },
                         component: Devolutions
                     },
-                    // {
-                    //     route: `${path}request-register`,
-                    //     label: 'Registrar solicitação',
-                    //     icon: 'fas fa-folder-open',
-                    //     component: RequestRegister
-                    // },
-                    // {
-                    //     route: `${path}devolution-register`,
-                    //     label: 'Registrar devolução',
-                    //     icon: 'fas fa-folder-open',
-                    //     component: DevolutionRegister
-                    // }
+                    {
+                        route: `${path}requests-register` ,
+                        component: RegisterForm
+                    },
+                    {
+                        route: `${path}devolutions-register` ,
+                        component: RegisterForm
+                    }
                 ]
             }
         }
@@ -53,7 +58,7 @@ class SupportArea extends React.Component {
                     <SubMenu menu={this.state.menu}/>
                     <div className="content">
                         {this.state.menu.items.map((itemRoute, key) =>{
-                            return <Route path={itemRoute.route} component={itemRoute.component} key={key} />
+                            return <Route path={itemRoute.route} render={() => <itemRoute.component header={itemRoute.header}/> } key={key} />
                         })}
                     </div>
                 </div>

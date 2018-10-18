@@ -1,4 +1,3 @@
-// import Modal from "react-responsive-modal";
 import React from 'react';
 import { Route } from "react-router-dom";
 import Dashboard from '../components/Dashboard';
@@ -8,8 +7,6 @@ import Warehouse from '../components/Warehouse';
 import { connect } from 'react-redux';
 import { logout } from '../actions/authActions';
 import { fetchUser } from '../actions/fetchUser';
-// import Login from '../pages/Login';
-// import Modal from "react-responsive-modal";
 
 class Application extends React.Component {
     logout(e) {

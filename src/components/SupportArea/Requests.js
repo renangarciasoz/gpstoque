@@ -1,23 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchRequests } from '../../actions/fetchRequests';
+import ProductContaner from '../ProductContainer';
 
 class Requests extends React.Component {
-    componentDidMount() {
-        this.props.fetchRequests();
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: false
+        }
     }
 
+    componentDidMount() {
+        this.setState({loading: true});
+
+        this.props.fetchRequests().then(
+            (res) => this.setState({ loading: false }),
+            (err) => this.setState({ loading: false })
+        );
+    }
+    
     render() {
+        const { requests, header } = this.props;
+
         return (
-            <div className="request-list">
-                <h3>Lista de solicitações</h3>
-                {this.props.requests && this.props.requests.map((request, i) => {
-                    return <li key={i}>{request._id}</li>
-                })}
-            </div>
+            <ProductContaner product={requests} header={header} loading={this.state.loading}/>
         )
     }
-}
+};
 
 function mapStateToProps(state) {
     return {

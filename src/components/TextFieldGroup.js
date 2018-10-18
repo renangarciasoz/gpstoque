@@ -12,13 +12,6 @@ const TextFieldGroup = ({ field, value, label, error, type, placeholder, onChang
                 value={value}
                 type={type}
                 name={field}
-                // className="form-control"
-
-            // type="text"
-            // className={shouldMarkError('email') ? "error" : ""}
-            // value={this.state.identifier}
-            // onChange={this.onChange}
-            // onBlur={this.handleBlur('email')}
             />
             {error && <span className="help-block">{error}</span>}
         </div>

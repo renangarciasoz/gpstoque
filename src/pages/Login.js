@@ -1,32 +1,19 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-// import Validator from 'validator';
-// import isEmpty from 'lodash/isEmpty';
 import TextFieldGroup from '../components/TextFieldGroup';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import { clickButton } from '../actions';
 import { login } from '../actions/authActions';
 import Modal from "react-responsive-modal";
 import history from "../routes/history";
-
-// function validate(email, password) {
-//     return {
-//         email: email.length === 0,
-//         password: password.length === 0,
-//     };
-// }
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // inputValue: 'teste dois com redux',
             open: false,
             modalMessage: '',
             modalTitle: '',
             redirectToReferrer: false,
-            // email: '',
             identifier: '',
             password: '',
             errors: {},
@@ -46,26 +33,6 @@ class Login extends React.Component {
         this.props.auth.isAuthenticated ? history.push('/application') :  history.push('/')
     }
 
-    // inputChange = event => {
-    //     this.setState({
-    //         inputValue: event.target.value
-    //     })
-    // }
-
-    // handleEmailChange = (evt) => {
-    //     this.setState({ email: evt.target.value });
-    // }
-
-    // handlePasswordChange = (evt) => {
-    //     this.setState({ password: evt.target.value });
-    // }
-
-    // handleBlur = (field) => (evt) => {
-    //     this.setState({
-    //         touched: { ...this.state.touched, [field]: true },
-    //     });
-    // }
-
     onOpenModal = () => {
         this.setState({ open: true });
     };
@@ -73,34 +40,6 @@ class Login extends React.Component {
     onCloseModal = () => {
         this.setState({ open: false });
     };
-
-    // handleSubmit = (evt) => {
-    //     const { email, password } = this.state;
-
-    //     if (!this.canBeSubmitted()) {
-    //         return;
-    //     }
-
-    //     if (email === 'admin@admin.com' && password === 'admin') {
-    //         auth.authenticate(() => {
-    //             this.setState({ redirectToReferrer: true });
-    //         });
-    //     } else {
-    //         this.setState({
-    //             open: true,
-    //             modalTitle: 'Verifique seu e-mail ou senha.',
-    //             modalMessage: `O E-mail "${email}" ou senha digitados não foi encontrado em nosso banco de dados, tente utilizar outro.`
-    //         });
-    //     }
-
-    //     evt.preventDefault();
-    // }
-
-    // canBeSubmitted() {
-    //     const errors = validate(this.state.email, this.state.password);
-    //     const isDisabled = Object.keys(errors).some(x => errors[x]);
-    //     return !isDisabled;
-    // }
 
     resetPassword = (evt) => {
         this.setState({
@@ -114,14 +53,6 @@ class Login extends React.Component {
 
     validateInput(data) {
         let errors = {};
-
-        // if (Validator.isNull(data.identifier)) {
-        //     errors.identifier = 'This field is required';
-        // }
-
-        // if (Validator.isNull(data.password)) {
-        //     errors.password = 'This field is required';
-        // }
 
         return {
             errors,
