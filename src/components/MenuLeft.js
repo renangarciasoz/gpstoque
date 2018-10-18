@@ -8,7 +8,13 @@ class MenuLeft extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            menu: [{
+            menu: [
+                {
+                    path: '/application/dashboard', 
+                    label: 'Dashboard', 
+                    icon: 'fas fa-chart-line'
+                },
+                {
                     path: '/application/support-area', 
                     label: 'Área de apoio', 
                     icon: 'fas fa-file-alt'
@@ -27,11 +33,6 @@ class MenuLeft extends React.Component {
                     path: '/application/client', 
                     label: 'Clientes / Contratos', 
                     icon: 'fas fa-id-badge'
-                },
-                {
-                    path: '/application/others', 
-                    label: 'Outros', 
-                    icon: 'fas fa-recycle'
                 }]
         }
     }

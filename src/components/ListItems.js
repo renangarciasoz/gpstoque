@@ -256,7 +256,7 @@ class Item extends React.Component {
                     }
 
                     // Se a property for um objeto, exibir o nome.
-                    if(prop.name) {
+                    if(prop && prop.name) {
                         return <Td key={i}>{prop.name}</Td>
                     }
                         
